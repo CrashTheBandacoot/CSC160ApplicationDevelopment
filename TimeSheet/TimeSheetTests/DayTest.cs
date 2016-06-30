@@ -16,7 +16,7 @@ namespace TimeSheetTests
             //act
             try
             {
-                d.Add(Day.TimeCodes.REGULAR, 8);
+                d.SetHours(Day.TimeCodes.REGULAR, 8);
             }
             catch(ArgumentOutOfRangeException e)
             {
@@ -35,8 +35,8 @@ namespace TimeSheetTests
             TimeSheet.Day d = new Day(new DateTime(2016, 6, 28));
 
             //act
-            d.Add(Day.TimeCodes.REGULAR, 21);
-            d.Add(Day.TimeCodes.SICK, 5);
+            d.SetHours(Day.TimeCodes.REGULAR, 21);
+            d.SetHours(Day.TimeCodes.SICK, 5);
 
             //assert
             Assert.IsFalse(d.Validate());

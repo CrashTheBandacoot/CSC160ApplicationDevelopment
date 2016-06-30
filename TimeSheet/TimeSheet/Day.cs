@@ -10,6 +10,8 @@ namespace TimeSheet
     public class Day
     {
         public enum TimeCodes { REGULAR, SICK, VACATION}
+        private const int numOfHourTypes = 3;
+        public float[] hoursArray = new float[numOfHourTypes];
         public float regularHours;
         public float sickHours;
         public float vacationHours;
@@ -22,22 +24,11 @@ namespace TimeSheet
 
         public DateTime Date { get; set; }
 
-        public void Add(TimeCodes timeType, float hours)
+        public void SetHours(TimeCodes timeType, float hours)
         {
             if (hours > 0)
             {
-                if (timeType == TimeCodes.REGULAR)
-                {
-                    regularHours += hours;
-                }
-                else if (timeType == TimeCodes.SICK)
-                {
-                    sickHours += hours;
-                }
-                else
-                {
-                    vacationHours += hours;
-                }
+                hoursArray[(int)timeType] = hours;
             }
             else
             {
