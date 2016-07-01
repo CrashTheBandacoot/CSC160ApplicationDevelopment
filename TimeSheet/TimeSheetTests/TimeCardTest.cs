@@ -32,5 +32,20 @@ namespace TimeSheetTests
                 Assert.IsInstanceOfType(e, typeof(ArgumentOutOfRangeException));
             }
         }
+
+        [TestMethod]
+        public void TestOverTime()
+        {    
+            DateTime startingDay = new DateTime(2016, 7, 3);
+            TimeCard t = new TimeCard(startingDay);
+            t.PayPeriod[4].SetHours(Day.TimeCodes.REGULAR, 15.0f);
+            t.PayPeriod[6].SetHours(Day.TimeCodes.REGULAR, 8.0f);
+            t.PayPeriod[2].SetHours(Day.TimeCodes.REGULAR, 20.0f);
+            t.PayPeriod[3].SetHours(Day.TimeCodes.REGULAR, 5.0f);
+            t.PayPeriod[10].SetHours(Day.TimeCodes.REGULAR, 12.0f);
+            t.CalculateOverTime();
+            float expected = 8.0f;
+            Assert.AreEqual(expected, t.OverTime);
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace TimeSheet
     public class TimeCard
     {
         public int HoursInWeek { get; set; }
-        public int OverTime { get; set; }
+        public float OverTime { get; set; }
         private const int numOfDaysInPayPeriod = 14;
         public Day[] PayPeriod = new Day[numOfDaysInPayPeriod];
         public TimeCard(DateTime payPeriodStart)
@@ -24,6 +24,29 @@ namespace TimeSheet
             else
             {
                 throw new ArgumentOutOfRangeException("payPeriodStart", "payPeriodStart must be a Sunday.");
+            }
+        }
+
+
+        public void CalculateOverTime()
+        {
+            float regularHours = 0.0f;
+            for (int i = 0; i < PayPeriod.Length / 2; ++i)
+            {
+                regularHours += PayPeriod[i].hoursArray[0];
+            }
+            if(regularHours > 40)
+            {
+                OverTime = regularHours - 40.0f;
+            }
+            regularHours = 0.0f;
+            for (int i = PayPeriod.Length / 2; i < PayPeriod.Length; ++i)
+            {
+                regularHours += PayPeriod[i].hoursArray[0];
+            }
+            if (regularHours > 40)
+            {
+                OverTime += regularHours - 40.0f;
             }
         }
     }
