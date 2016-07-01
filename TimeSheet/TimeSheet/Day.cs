@@ -13,15 +13,12 @@ namespace TimeSheet
         private const int numOfHourTypes = 3;
         public float[] hoursArray = new float[numOfHourTypes];
         public float totalHours = 0;
-        private DateTime dateTime;
+        public DateTime dateTime;
 
         public Day(DateTime dateTime)
         {
             this.dateTime = dateTime;
         }
-
-        public DateTime Date { get; set; }
-
         public void SetHours(TimeCodes timeType, float hours)
         {
             if (hours > 0)
