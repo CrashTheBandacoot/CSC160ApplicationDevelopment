@@ -12,6 +12,8 @@ namespace TimeSheet
         public float OverTime { get; set; }
         private const int numOfDaysInPayPeriod = 14;
         public Day[] PayPeriod = new Day[numOfDaysInPayPeriod];
+        public float[] totalHoursWorked = new float[Day.numOfHourTypes];
+
         public TimeCard(DateTime payPeriodStart)
         {
             if (payPeriodStart.DayOfWeek.Equals(DayOfWeek.Sunday))
@@ -47,6 +49,17 @@ namespace TimeSheet
             if (regularHours > 40)
             {
                 OverTime += regularHours - 40.0f;
+            }
+        }
+
+        public void CaluclateHoursWorked()
+        {
+
+            for(int i = 0; i < PayPeriod.Length; i++)
+            {
+                totalHoursWorked[0] += PayPeriod[i].hoursArray[0];
+                totalHoursWorked[1] += PayPeriod[i].hoursArray[1];
+                totalHoursWorked[2] += PayPeriod[i].hoursArray[2];
             }
         }
     }

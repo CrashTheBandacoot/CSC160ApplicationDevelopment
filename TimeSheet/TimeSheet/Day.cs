@@ -10,7 +10,7 @@ namespace TimeSheet
     public class Day
     {
         public enum TimeCodes { REGULAR, SICK, VACATION}
-        private const int numOfHourTypes = 3;
+        public const int numOfHourTypes = 3;
         public float[] hoursArray = new float[numOfHourTypes];
         public float totalHours = 0;
         public DateTime dateTime;
