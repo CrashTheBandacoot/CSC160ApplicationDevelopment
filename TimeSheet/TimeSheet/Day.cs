@@ -12,9 +12,7 @@ namespace TimeSheet
         public enum TimeCodes { REGULAR, SICK, VACATION}
         private const int numOfHourTypes = 3;
         public float[] hoursArray = new float[numOfHourTypes];
-        public float regularHours;
-        public float sickHours;
-        public float vacationHours;
+        public float totalHours = 0;
         private DateTime dateTime;
 
         public Day(DateTime dateTime)
@@ -28,17 +26,27 @@ namespace TimeSheet
         {
             if (hours > 0)
             {
-                hoursArray[(int)timeType] = hours;
+                if(hours % .25f == 0)
+                {
+                    hoursArray[(int)timeType] = hours;
+                    for (int i = 0; i < numOfHourTypes; ++i)
+                    {
+                        totalHours += hoursArray[i];
+                    }
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException("hours", "Hours must be in .25 increments");
+                }
             }
             else
             {
                 throw new ArgumentOutOfRangeException("hours", "Hours must be > 0");
             }
         }
-        public float totalHours = 0;
         public bool Validate()
         {
-            if (totalHours <= 24 && totalHours > 0)
+            if (totalHours <= 24 && totalHours > 0 && totalHours % .25f == 0)
             {
                 return true;
             }
