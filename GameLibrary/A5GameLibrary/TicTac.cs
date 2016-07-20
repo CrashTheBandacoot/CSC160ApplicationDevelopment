@@ -37,6 +37,7 @@ namespace TicTacToe
         /// </summary>
         private void Start()
         {
+            _2DGameLibrary.Game game = new _2DGameLibrary.Game();
             int indexOfCurrentPlayer = 0;
             activePlayer = players[indexOfCurrentPlayer];
 
@@ -44,7 +45,6 @@ namespace TicTacToe
             {
                 Console.WriteLine("Here is the board:");
                 PrintBoard();
-
                 TakeTurn(activePlayer);
                 //select the other player
                 indexOfCurrentPlayer = (indexOfCurrentPlayer == 0) ? 1 : 0;
