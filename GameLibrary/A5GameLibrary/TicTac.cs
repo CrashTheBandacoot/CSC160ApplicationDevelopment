@@ -15,18 +15,19 @@ namespace TicTacToe
         }
 
 
-        Player activePlayer;
-        char[,] board = new char[3,3];
-        Player[] players;
+        _2DGameLibrary.Player activePlayer;
+        _2DGameLibrary.Board board = new _2DGameLibrary.Board();
+        _2DGameLibrary.Player[] players;
 
         public TicTac()
         {
-            players = new Player[2];
+            board.boardArray = new char[3, 3];
+            players = new _2DGameLibrary.Player[2];
 
             //Random names from http://www.behindthename.com/random/ 
             //The names are Greek ;)
-            players[0] = new Player() { Name = "Player 1: Theophania", Token = 'X' }; //using object initialization syntax
-            players[1] = new Player() { Name = "Player 2: Xenon", Token = 'O' };  
+            players[0] = new _2DGameLibrary.Player() { Name = "Player 1: Theophania", Token = 'X' }; //using object initialization syntax
+            players[1] = new _2DGameLibrary.Player() { Name = "Player 2: Xenon", Token = 'O' };  
         }
 
 
@@ -61,10 +62,10 @@ namespace TicTacToe
         /// Get and set the player's desired location on the board
         /// </summary>
         /// <param name="activePlayer"></param>
-        private void TakeTurn(Player activePlayer)
+        private void TakeTurn(_2DGameLibrary.Player activePlayer)
         {
             int[] position = PiecePlacement(activePlayer);
-            board[position[0], position[1]] = activePlayer.Token;
+            board.boardArray[position[0], position[1]] = activePlayer.Token;
         }
 
 
@@ -74,7 +75,7 @@ namespace TicTacToe
         /// </summary>
         /// <param name="activePlayer"></param>
         /// <returns></returns>
-        private int[] PiecePlacement(Player activePlayer)
+        private int[] PiecePlacement(_2DGameLibrary.Player activePlayer)
         {
             //you need to be using the .NET framework 4.6 for this line to work (C# 6)
             Console.WriteLine();
@@ -124,12 +125,12 @@ namespace TicTacToe
         {
             int position = 1; //1-based board map (done for user experience)
 
-            for (int row = 0; row <= board.GetUpperBound(0); row++)
+            for (int row = 0; row <= board.boardArray.GetUpperBound(0); row++)
             {
-                for (int column = 0; column <= board.GetUpperBound(1); column++)
+                for (int column = 0; column <= board.boardArray.GetUpperBound(1); column++)
                 {
                     Console.Write(position++);
-                    if (column < board.GetUpperBound(1))
+                    if (column < board.boardArray.GetUpperBound(1))
                     {
                         Console.Write(" - ");
                     }
@@ -144,14 +145,14 @@ namespace TicTacToe
         private void PrintBoard()
         {
             Console.WriteLine();
-            for (int row = 0; row <= board.GetUpperBound(0); row++)
+            for (int row = 0; row <= board.boardArray.GetUpperBound(0); row++)
             {
-                for (int column = 0; column <= board.GetUpperBound(1); column++)
+                for (int column = 0; column <= board.boardArray.GetUpperBound(1); column++)
                 {
-                    Console.Write(board[row,column]);
+                    Console.Write(board.boardArray[row,column]);
 
                     //only print the dashes for the inner columns
-                    if (column < board.GetUpperBound(1))
+                    if (column < board.boardArray.GetUpperBound(1))
                     {
                         Console.Write(" - ");
                     }
@@ -171,42 +172,42 @@ namespace TicTacToe
         {
             //if three in a row or all spaces are filled
             //all filled
-            if (board.Length == 9)
+            if (board.boardArray.Length == 9)
             {
                 return true;
             }
             // each row
-            if (board[0, 0] == board[0, 1] && board[0, 0] == board[0, 2])
+            if (board.boardArray[0, 0] == board.boardArray[0, 1] && board.boardArray[0, 0] == board.boardArray[0, 2])
             {
                 return true;
             }
-            if (board[1, 0] == board[1, 1] && board[1, 0] == board[1, 2])
+            if (board.boardArray[1, 0] == board.boardArray[1, 1] && board.boardArray[1, 0] == board.boardArray[1, 2])
             {
                 return true;
             }
-            if (board[2, 0] == board[2, 1] && board[2, 0] == board[2, 2])
+            if (board.boardArray[2, 0] == board.boardArray[2, 1] && board.boardArray[2, 0] == board.boardArray[2, 2])
             {
                 return true;
             }
             //each colume
-            if (board[0, 0] == board[1, 0] && board[0, 0] == board[2, 0])
+            if (board.boardArray[0, 0] == board.boardArray[1, 0] && board.boardArray[0, 0] == board.boardArray[2, 0])
             {
                 return true;
             }
-            if (board[0, 1] == board[1, 1] && board[0, 1] == board[2, 1])
+            if (board.boardArray[0, 1] == board.boardArray[1, 1] && board.boardArray[0, 1] == board.boardArray[2, 1])
             {
                 return true;
             }
-            if (board[0, 2] == board[2, 1] && board[0, 2] == board[2, 2])
+            if (board.boardArray[0, 2] == board.boardArray[2, 1] && board.boardArray[0, 2] == board.boardArray[2, 2])
             {
                 return true;
             }
             //each diaganle
-            if (board[0,0] == board[1,1] && board[0,0] == board[2,2])
+            if (board.boardArray[0,0] == board.boardArray[1,1] && board.boardArray[0,0] == board.boardArray[2,2])
             {
                 return true;
             }
-            if (board[2, 0] == board[1, 1] && board[2, 0] == board[0, 2])
+            if (board.boardArray[2, 0] == board.boardArray[1, 1] && board.boardArray[2, 0] == board.boardArray[0, 2])
             {
                 return true;
             }
