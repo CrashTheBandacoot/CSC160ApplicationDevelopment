@@ -170,18 +170,47 @@ namespace TicTacToe
         private bool GameOver()
         {
             //if three in a row or all spaces are filled
-            //if(board[0, 0] == board[0, 1] && board[0, 0] == board[0, 2])
-            //{
-            //    return true;
-            //}
-            //if (board[1, 0] == board[1, 1] && board[0, 0] == board[1, 2])
-            //{
-            //    return true;
-            //}
-            //if (board[1, 0] == board[1, 1] && board[0, 0] == board[1, 2])
-            //{
-            //    return true;
-            //}
+            //all filled
+            if (board.Length == 9)
+            {
+                return true;
+            }
+            // each row
+            if (board[0, 0] == board[0, 1] && board[0, 0] == board[0, 2])
+            {
+                return true;
+            }
+            if (board[1, 0] == board[1, 1] && board[1, 0] == board[1, 2])
+            {
+                return true;
+            }
+            if (board[2, 0] == board[2, 1] && board[2, 0] == board[2, 2])
+            {
+                return true;
+            }
+            //each colume
+            if (board[0, 0] == board[1, 0] && board[0, 0] == board[2, 0])
+            {
+                return true;
+            }
+            if (board[0, 1] == board[1, 1] && board[0, 1] == board[2, 1])
+            {
+                return true;
+            }
+            if (board[0, 2] == board[2, 1] && board[0, 2] == board[2, 2])
+            {
+                return true;
+            }
+            //each diaganle
+            if (board[0,0] == board[1,1] && board[0,0] == board[2,2])
+            {
+                return true;
+            }
+            if (board[2, 0] == board[1, 1] && board[2, 0] == board[0, 2])
+            {
+                return true;
+            }
+
             return false;
         }
     }
