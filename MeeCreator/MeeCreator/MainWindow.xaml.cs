@@ -24,5 +24,14 @@ namespace MeeCreator
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Ellipse myEllipse = new Ellipse();
+            myEllipse.Width = 500;
+            myEllipse.Height = 100;
+            myEllipse.Fill = Brushes.Fuchsia;
+            FaceCanvas.Children.Add(myEllipse);
+        }
     }
 }
