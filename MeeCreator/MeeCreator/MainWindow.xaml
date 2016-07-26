@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MeeCreator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="350" Width="542.098">
+    <StackPanel x:Name="MainContent" Orientation="Horizontal" HorizontalAlignment="Left">
+        <Button>Test1</Button>
+        <Button>Test2</Button>
+        <Button>Test3</Button>
+        <Button>Test4</Button>
+        <Canvas Width="300" Background="Firebrick">
+            <Ellipse Height="20" Width="20" Canvas.Top="30" Canvas.Left="50" Fill="Chartreuse"></Ellipse>
+        </Canvas>
+        <StackPanel>
+            <Slider FontFamily="Snap ITC" FontSize="26.667" Width="100"></Slider>
+        </StackPanel>
+    </StackPanel>
 </Window>
