@@ -5,12 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MeeCreator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="542.098">
+        Title="MainWindow" Height="424.654" Width="612.873">
     <StackPanel x:Name="MainContent" Orientation="Horizontal" HorizontalAlignment="Left">
-        <Button Click="Button_Click">Test1</Button>
-        <Button>Test2</Button>
-        <Button>Test3</Button>
-        <Button>Test4</Button>
+        <TabControl TabStripPlacement="Top" Margin="0, 0, 0, 10" Width="305">
+            <TabItem Name="faceTab" Header="Face">
+                <StackPanel>
+                    <Button Content="_OK"/>
+                    <Button Content="_Cancel"/>
+                </StackPanel>
+            </TabItem>
+            
+            <TabItem Name="eyeTab" Header="Eyes">
+                <StackPanel>
+                    <Button Click="Button_Click">Test1</Button>
+                    <Button>Test2</Button>
+                    <Button>Test3</Button>
+                    <Button>Test4</Button>
+                    <StackPanel>
+                        <Slider x:Name="slider" Width="100" Minimum="50" Maximum="100"></Slider>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Name="noseTab" Header="Nose">
+                <TabItem.Content>Foreground property information goes here.</TabItem.Content>
+            </TabItem>
+
+            <TabItem Name="mouthTab" Header="Mouth">
+                <TabItem.Content>Border color property information goes here.</TabItem.Content>
+            </TabItem>
+
+            <TabItem Name="beautyMarkTab" Header="Beauty Marks">
+                <TabItem.Content>Border color property information goes here.</TabItem.Content>
+            </TabItem>
+        </TabControl>
         <Canvas x:Name="FaceCanvas" Width="300" Background="Firebrick">
             <Ellipse Height="20" Width="{Binding Value, ElementName=slider}" Canvas.Top="30" Canvas.Left="50" Fill="Chartreuse" RenderTransformOrigin="0.5,0.5">
                 <Ellipse.RenderTransform>
@@ -23,8 +51,5 @@
                 </Ellipse.RenderTransform>
             </Ellipse>
         </Canvas>
-        <StackPanel>
-            <Slider x:Name="slider" Width="100" Minimum="50" Maximum="100"></Slider>
-        </StackPanel>
     </StackPanel>
 </Window>
