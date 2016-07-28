@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MeeCreator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="424.654" Width="612.873">
+        Title="MainWindow" Height="424.654" Width="565.82">
     <StackPanel x:Name="MainContent" Orientation="Horizontal" HorizontalAlignment="Left">
-        <TabControl TabStripPlacement="Top" Margin="0, 0, 0, 10" Width="305">
+        <TabControl TabStripPlacement="Top" Margin="0, 0, 0, 10" Width="258">
             <TabItem Name="faceTab" Header="Face">
                 <StackPanel>
                     <Button Content="_OK"/>
@@ -40,6 +40,8 @@
             </TabItem>
         </TabControl>
         <Canvas x:Name="FaceCanvas" Width="300" Background="Firebrick">
+            <Ellipse Height="200" Width="150" Canvas.Top="50" Canvas.Left="75" Fill="White">
+            </Ellipse>
             <Ellipse Height="20" Width="{Binding Value, ElementName=slider}" Canvas.Top="30" Canvas.Left="50" Fill="Chartreuse" RenderTransformOrigin="0.5,0.5">
                 <Ellipse.RenderTransform>
                     <TransformGroup>
@@ -50,6 +52,7 @@
                     </TransformGroup>
                 </Ellipse.RenderTransform>
             </Ellipse>
+            
         </Canvas>
     </StackPanel>
 </Window>
