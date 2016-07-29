@@ -8,51 +8,32 @@
         Title="MainWindow" Height="424.654" Width="565.82">
     <StackPanel x:Name="MainContent" Orientation="Horizontal" HorizontalAlignment="Left">
         <TabControl TabStripPlacement="Top" Margin="0, 0, 0, 10" Width="258">
-            <TabItem Name="faceTab" Header="Face">
+            <TabItem x:Name="faceTab" Header="Face">
                 <StackPanel>
-                    <Button Content="_OK"/>
-                    <Button Content="_Cancel"/>
-                </StackPanel>
-            </TabItem>
-            
-            <TabItem Name="eyeTab" Header="Eyes">
-                <StackPanel>
-                    <Button Click="Button_Click">Test1</Button>
-                    <Button>Test2</Button>
-                    <Button>Test3</Button>
-                    <Button>Test4</Button>
-                    <StackPanel>
-                        <Slider x:Name="slider" Width="100" Minimum="50" Maximum="100"></Slider>
-                    </StackPanel>
+                    
                 </StackPanel>
             </TabItem>
 
-            <TabItem Name="noseTab" Header="Nose">
-                <TabItem.Content>Foreground property information goes here.</TabItem.Content>
+            <TabItem x:Name="eyeTab" Header="Eyes">
+                <StackPanel>
+                    <Label x:Name="l_eyeHeight" Height="41" Content="&#x9;Eye Height" FontSize="16" />
+                    <Slider x:Name="s_eyeHeight" Width="100" Minimum="20" Maximum="40"/>
+                    <Label x:Name="l_eyeWidth" Height="41" Content="&#x9;Eye Width" FontSize="16" />
+                    <Slider x:Name="s_eyeWidth" Width="100" Minimum="20" Maximum="40"/>
+                </StackPanel>
             </TabItem>
 
-            <TabItem Name="mouthTab" Header="Mouth">
-                <TabItem.Content>Border color property information goes here.</TabItem.Content>
-            </TabItem>
+            <TabItem x:Name="noseTab" Header="Nose">Foreground property information goes here.</TabItem>
 
-            <TabItem Name="beautyMarkTab" Header="Beauty Marks">
-                <TabItem.Content>Border color property information goes here.</TabItem.Content>
-            </TabItem>
+            <TabItem x:Name="mouthTab" Header="Mouth">Border color property information goes here.</TabItem>
+
+            <TabItem x:Name="beautyMarkTab" Header="Beauty Marks">Border color property information goes here.</TabItem>
         </TabControl>
         <Canvas x:Name="FaceCanvas" Width="300" Background="Firebrick">
-            <Ellipse Height="200" Width="150" Canvas.Top="50" Canvas.Left="75" Fill="White">
-            </Ellipse>
-            <Ellipse Height="20" Width="{Binding Value, ElementName=slider}" Canvas.Top="30" Canvas.Left="50" Fill="Chartreuse" RenderTransformOrigin="0.5,0.5">
-                <Ellipse.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="{Binding Value, ElementName=slider}"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Ellipse.RenderTransform>
-            </Ellipse>
-            
+            <Ellipse Height="200" Width="150" Canvas.Top="50" Canvas.Left="75" Fill="White"/>
+            <Ellipse Height="{Binding Value, ElementName=s_eyeHeight}" Width="{Binding Value, ElementName=s_eyeWidth}" Canvas.Top="90" Canvas.Left="115" Fill="Chartreuse"/>
+            <Ellipse Height="{Binding Value, ElementName=s_eyeHeight}" Width="{Binding Value, ElementName=s_eyeWidth}" Canvas.Top="90" Canvas.Left="165" Fill="Chartreuse"/>
+
         </Canvas>
     </StackPanel>
 </Window>
