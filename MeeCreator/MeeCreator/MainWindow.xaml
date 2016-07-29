@@ -7,18 +7,19 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="424.654" Width="565.82">
     <StackPanel x:Name="MainContent" Orientation="Horizontal" HorizontalAlignment="Left">
-        <TabControl TabStripPlacement="Top" Margin="0, 0, 0, 10" Width="258">
+        <TabControl TabStripPlacement="Top" Margin="0, 0, 0, 10" Width="258" HorizontalAlignment="Center">
             <TabItem x:Name="faceTab" Header="Face">
-                <StackPanel>
-                    
+                <StackPanel HorizontalAlignment="Center">
+                    <Label x:Name="l_faceHeight" Height="41" Content="Face Height" FontSize="16"/>
+                    <Slider x:Name="s_faceHeight"/>
                 </StackPanel>
             </TabItem>
 
             <TabItem x:Name="eyeTab" Header="Eyes">
                 <StackPanel>
-                    <Label x:Name="l_eyeHeight" Height="41" Content="&#x9;Eye Height" FontSize="16" />
+                    <Label x:Name="l_eyeHeight" Height="41" Content="Eye Height" FontSize="16" HorizontalAlignment="Center" />
                     <Slider x:Name="s_eyeHeight" Width="100" Minimum="20" Maximum="40"/>
-                    <Label x:Name="l_eyeWidth" Height="41" Content="&#x9;Eye Width" FontSize="16" />
+                    <Label x:Name="l_eyeWidth" Height="41" Content="Eye Width" FontSize="16" HorizontalAlignment="Center" />
                     <Slider x:Name="s_eyeWidth" Width="100" Minimum="20" Maximum="40"/>
                 </StackPanel>
             </TabItem>
@@ -31,8 +32,26 @@
         </TabControl>
         <Canvas x:Name="FaceCanvas" Width="300" Background="Firebrick">
             <Ellipse Height="200" Width="150" Canvas.Top="50" Canvas.Left="75" Fill="White"/>
-            <Ellipse Height="{Binding Value, ElementName=s_eyeHeight}" Width="{Binding Value, ElementName=s_eyeWidth}" Canvas.Top="90" Canvas.Left="115" Fill="Chartreuse"/>
-            <Ellipse Height="{Binding Value, ElementName=s_eyeHeight}" Width="{Binding Value, ElementName=s_eyeWidth}" Canvas.Top="90" Canvas.Left="165" Fill="Chartreuse"/>
+            <Ellipse Height="{Binding Value, ElementName=s_eyeHeight}" Width="1" Canvas.Top="90" Canvas.Left="125" Fill="Chartreuse" RenderTransformOrigin="0.5,0.5">
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="{Binding Value, ElementName=s_eyeWidth}"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+            <Ellipse Height="{Binding Value, ElementName=s_eyeHeight}" Width="1" Canvas.Top="90" Canvas.Left="175" Fill="Chartreuse" RenderTransformOrigin="0.5,0.5">
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="{Binding Value, ElementName=s_eyeWidth}"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+            </Ellipse>
 
         </Canvas>
     </StackPanel>
