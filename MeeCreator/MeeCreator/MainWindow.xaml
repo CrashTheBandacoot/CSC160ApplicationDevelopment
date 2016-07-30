@@ -1,17 +1,85 @@
-﻿<Window x:Class="MeeCreator.MainWindow"
+﻿<Window x:Name="_No_Name_" x:Class="MeeCreator.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MeeCreator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="424.654" Width="565.82">
+        Title="Mee Creator" Height="443.475" Width="557.086">
     <StackPanel x:Name="MainContent" Orientation="Horizontal" HorizontalAlignment="Left">
-        <TabControl TabStripPlacement="Top" Margin="0, 0, 0, 10" Width="258" HorizontalAlignment="Center">
+        <StackPanel.Resources>
+            <local:InvertValueConverter x:Key="InvertValue"/>
+        </StackPanel.Resources>
+
+        <Canvas x:Name="FaceCanvas" Width="300" Background="Firebrick">
+            <Ellipse x:Name="e_face" Height="{Binding Value, ElementName=s_faceHeight}" Width="{Binding Value, ElementName=s_faceWidth}" Canvas.Top="50" Canvas.Left="145" Fill="White" RenderTransformOrigin="0.5,0.5">
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="{Binding Value, ElementName=s_faceWidth}"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+            <Ellipse x:Name="e_rightEye" Height="{Binding Value, ElementName=s_eyeHeight}" Width="1" Canvas.Top="90" Canvas.Left="125" Fill="Chartreuse" RenderTransformOrigin="0.5,0.5">
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="{Binding Value, ElementName=s_eyeWidth}"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="{Binding Value, ElementName=s_eyeHorizontal}" Y="{Binding Value, ElementName=s_eyeVertical}"/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+            <Ellipse x:Name="e_leftEye" Height="{Binding Value, ElementName=s_eyeHeight}" Width="1" Canvas.Top="90" Canvas.Left="175" Fill="Chartreuse" RenderTransformOrigin="0.5,0.5">
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="{Binding Value, ElementName=s_eyeWidth}"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="{Binding Value, ElementName=s_eyeHorizontal, Converter= {StaticResource ResourceKey=InvertValue}}" Y="{Binding Value, ElementName=s_eyeVertical}"/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+            <Rectangle x:Name="r_nose" Fill="#FFEED7C4" Height="{Binding Value, ElementName=s_noseHeight}" Width="1" Canvas.Top="120" Canvas.Left="150" RenderTransformOrigin="0.5,0.5">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="{Binding Value, ElementName=s_noseWidth}"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="{Binding Value, ElementName=s_noseHorizontal}" Y="{Binding Value, ElementName=s_noseVertical}"/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Ellipse x:Name="e_mouth" Width="1" Height="{Binding Value, ElementName=s_mouthHeight}" Fill="#FFFBCBCB" Canvas.Left="150" Canvas.Top="160" RenderTransformOrigin="0.5,0.5" >
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="{Binding Value, ElementName=s_mouthWidth}"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="{Binding Value, ElementName=s_mouthHorizontal}" Y="{Binding Value, ElementName=s_mouthVertical}"/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+            <Ellipse x:Name="e_bMark" Fill="#FF68321E" Height="{Binding Value, ElementName=s_bMarkHeight}" Width="1" RenderTransformOrigin="0.5,0.5" Canvas.Top="150" Canvas.Left="120">
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="{Binding Value, ElementName=s_bMarkWidth}"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="{Binding Value, ElementName=s_bMarkHorizontal}" Y="{Binding Value, ElementName=s_bMarkVertical}"/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+        </Canvas>
+        <TabControl TabStripPlacement="Top" Width="251" HorizontalAlignment="Center">
             <TabItem x:Name="faceTab" Header="Face">
                 <StackPanel HorizontalAlignment="Center">
                     <Label x:Name="l_faceHeight" Height="41" Content="Face Height" FontSize="16"/>
-                    <Slider x:Name="s_faceHeight"/>
+                    <Slider x:Name="s_faceHeight" Minimum="160" Maximum="240"/>
+                    <Label x:Name="l_faceWidth" Height="41" Content="Face Width" FontSize="16"/>
+                    <Slider x:Name="s_faceWidth" Minimum="11.5" Maximum="15"/>
                 </StackPanel>
             </TabItem>
 
@@ -21,38 +89,58 @@
                     <Slider x:Name="s_eyeHeight" Width="100" Minimum="20" Maximum="40"/>
                     <Label x:Name="l_eyeWidth" Height="41" Content="Eye Width" FontSize="16" HorizontalAlignment="Center" />
                     <Slider x:Name="s_eyeWidth" Width="100" Minimum="20" Maximum="40"/>
+                    <Grid>
+                        <Button x:Name="b_blue" Content="  Blue  " HorizontalAlignment="Left" Click="b_blue_Click"/>
+                        <Button x:Name="b_green" Content="Green" HorizontalAlignment="Center" Click="b_green_Click"/>
+                        <Button x:Name="b_brown" Content="Brown" HorizontalAlignment="Right" Click="b_brown_Click"/>
+                    </Grid>
+                    <Label x:Name="l_eyeVertical" Height="41" Content="Vertical Adjustment" FontSize="16" HorizontalAlignment="Center"/>
+                    <Slider x:Name="s_eyeVertical"  Minimum="-20" Maximum="20" Value="0"/>
+                    <Label x:Name="l_eyeHorizontal" Height="41" Content="Horizontal Adjustment" FontSize="16" HorizontalAlignment="Center"/>
+                    <Slider x:Name="s_eyeHorizontal" Minimum="-20" Maximum="20" Value="0"/>
                 </StackPanel>
             </TabItem>
 
-            <TabItem x:Name="noseTab" Header="Nose">Foreground property information goes here.</TabItem>
+            <TabItem x:Name="noseTab" Header="Nose">
+                <StackPanel>
+                    <Label x:Name="l_noseHeight" Height="41" Content="Nose Height" FontSize="16" HorizontalAlignment="Center" />
+                    <Slider x:Name="s_noseHeight" Width="100" Minimum="20" Maximum="40"/>
+                    <Label x:Name="l_noseWidth" Height="41" Content="Nose Width" FontSize="16" HorizontalAlignment="Center" />
+                    <Slider x:Name="s_noseWidth" Width="100" Minimum="20" Maximum="40"/>
+                    <Label x:Name="l_noseVertical" Height="41" Content="Vertical Adjustment" FontSize="16" HorizontalAlignment="Center"/>
+                    <Slider x:Name="s_noseVertical" Minimum="-20" Maximum="20" Value="0"/>
+                    <Label x:Name="l_noseHorizontal" Height="41" Content="Horizontal Adjustment" FontSize="16" HorizontalAlignment="Center"/>
+                    <Slider x:Name="s_noseHorizontal"  Minimum="-20" Maximum="20" Value="0"/>
+                </StackPanel>
+            </TabItem>
 
-            <TabItem x:Name="mouthTab" Header="Mouth">Border color property information goes here.</TabItem>
+            <TabItem x:Name="mouthTab" Header="Mouth">
+                <StackPanel>
+                    <Label x:Name="l_mouthHeight" Height="41" Content="Mouth Height" FontSize="16" HorizontalAlignment="Center" />
+                    <Slider x:Name="s_mouthHeight" Width="100" Minimum="10" Maximum="30"/>
+                    <Label x:Name="l_mouthWidth" Height="41" Content="Mouth Width" FontSize="16" HorizontalAlignment="Center" />
+                    <Slider x:Name="s_mouthWidth" Width="100" Minimum="30" Maximum="50"/>
 
-            <TabItem x:Name="beautyMarkTab" Header="Beauty Marks">Border color property information goes here.</TabItem>
+                    <Label x:Name="l_mouthVertical" Height="41" Content="Vertical Adjustment" FontSize="16" HorizontalAlignment="Center"/>
+                    <Slider x:Name="s_mouthVertical"  Minimum="-20" Maximum="20" Value="0"/>
+                    <Label x:Name="l_mouthHorizontal" Height="41" Content="Horizontal Adjustment" FontSize="16" HorizontalAlignment="Center"/>
+                    <Slider x:Name="s_mouthHorizontal" Minimum="-20" Maximum="20" Value="0"/>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem x:Name="beautyMarkTab" Header="Beauty Mark">
+                <StackPanel>
+                    <Label x:Name="l_bMarkHeight" Height="41" Content="Mark Height" FontSize="16" HorizontalAlignment="Center" />
+                    <Slider x:Name="s_bMarkHeight" Width="100" Minimum="5" Maximum="20"/>
+                    <Label x:Name="l_bMarkWidth" Height="41" Content="Mark Width" FontSize="16" HorizontalAlignment="Center" />
+                    <Slider x:Name="s_bMarkWidth" Width="100" Minimum="5" Maximum="20"/>
+
+                    <Label x:Name="l_bMarkVertical" Height="41" Content="Vertical Adjustment" FontSize="16" HorizontalAlignment="Center"/>
+                    <Slider x:Name="s_bMarkVertical" Minimum="-20" Maximum="20" Value="0"/>
+                    <Label x:Name="l_bMarkHorizontal" Height="41" Content="Horizontal Adjustment" FontSize="16" HorizontalAlignment="Center"/>
+                    <Slider x:Name="s_bMarkHorizontal" Minimum="-20" Maximum="20" Value="0"/>
+                </StackPanel>
+            </TabItem>
         </TabControl>
-        <Canvas x:Name="FaceCanvas" Width="300" Background="Firebrick">
-            <Ellipse Height="200" Width="150" Canvas.Top="50" Canvas.Left="75" Fill="White"/>
-            <Ellipse Height="{Binding Value, ElementName=s_eyeHeight}" Width="1" Canvas.Top="90" Canvas.Left="125" Fill="Chartreuse" RenderTransformOrigin="0.5,0.5">
-                <Ellipse.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="{Binding Value, ElementName=s_eyeWidth}"/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Ellipse.RenderTransform>
-            </Ellipse>
-            <Ellipse Height="{Binding Value, ElementName=s_eyeHeight}" Width="1" Canvas.Top="90" Canvas.Left="175" Fill="Chartreuse" RenderTransformOrigin="0.5,0.5">
-                <Ellipse.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="{Binding Value, ElementName=s_eyeWidth}"/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Ellipse.RenderTransform>
-            </Ellipse>
-
-        </Canvas>
     </StackPanel>
 </Window>
