@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClock"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="614.027">
 
     <Grid>
 
@@ -17,14 +17,14 @@
             <ColumnDefinition Width="100*" />
         </Grid.ColumnDefinitions>
         <Label x:Name="tb_milliseconds" Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="10,127,10,135" Height="58" Width="85" Content="00"/>
-        <CheckBox x:Name="cb_milliseconds" Content="Milliseconds" Grid.Column="4" HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.532,1.523"/>
+        <CheckBox x:Name="cb_milliseconds" Content="Milliseconds" Grid.Column="4" HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.532,1.523" Checked="cb_milliseconds_Checked" IsChecked="True" Unchecked="cb_milliseconds_Unchecked"/>
         <Label x:Name="tb_seconds" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="10,127,9,135" Height="58" Width="85" Content="00"/>
         <Label x:Name="tb_minutes" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="9,127,10,135" Height="58" Width="85" Content="00"/>
         <Label x:Name="tb_hours" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="5,127,10,135" Height="58" Width="85" Content="00"/>
         <Label x:Name="tb_days" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="9,127,10,135" Height="58" Width="85" Content="00"/>
-        <CheckBox x:Name="cb_seconds" Content="Seconds" Grid.Column="3" HorizontalAlignment="Left" Margin="18,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.532,1.523"/>
-        <CheckBox x:Name="cb_minutes" Content="Minutes" Grid.Column="2" HorizontalAlignment="Left" Margin="18,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.532,1.523"/>
-        <CheckBox x:Name="cb_hours" Content="Hours" Grid.Column="1" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.532,1.523"/>
-        <CheckBox x:Name="cb_day" Content="Days" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.532,1.523"/>
+        <CheckBox x:Name="cb_seconds" Content="Seconds" Grid.Column="3" HorizontalAlignment="Left" Margin="18,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.532,1.523" Checked="cb_Seconds_Checked" IsChecked="True" Unchecked="cb_Seconds_Unchecked"/>
+        <CheckBox x:Name="cb_minutes" Content="Minutes" Grid.Column="2" HorizontalAlignment="Left" Margin="18,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.532,1.523" Checked="cb_Minutes_Checked" IsChecked="True" Unchecked="cb_Minutes_Unchecked"/>
+        <CheckBox x:Name="cb_hours" Content="Hours" Grid.Column="1" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.532,1.523" Checked="cb_Hours_Checked" IsChecked="True" Unchecked="cb_Hours_Unchecked"/>
+        <CheckBox x:Name="cb_day" Content="Days" HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.532,1.523" Checked="cb_Days_Checked" IsChecked="True" Unchecked="cb_Days_Unchecked"/>
     </Grid>
 </Window>

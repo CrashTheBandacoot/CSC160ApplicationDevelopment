@@ -129,5 +129,51 @@ namespace WPFClock
         {
             tb_days.Dispatcher.BeginInvoke(new Action<int>(Ticker_DaysChangedUIThread), currentTime);
         }
+
+        private void cb_milliseconds_Checked(object sender, RoutedEventArgs e)
+        {
+            try { ticker.MillisecondsChanged += Ticker_MillisecondsChangedOnDifferentThread; }
+            catch (NullReferenceException) { }
+        }
+        private void cb_milliseconds_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ticker.MillisecondsChanged -= Ticker_MillisecondsChangedOnDifferentThread;
+        }
+        private void cb_Seconds_Checked(object sender, RoutedEventArgs e)
+        {
+            try { ticker.SecondsChanged += Ticker_SecondsChangedOnDifferentThread; }
+            catch (NullReferenceException) { }
+        }
+        private void cb_Seconds_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ticker.SecondsChanged -= Ticker_SecondsChangedOnDifferentThread;
+        }
+        private void cb_Minutes_Checked(object sender, RoutedEventArgs e)
+        {
+            try { ticker.MinutesChanged += Ticker_MinutesChangedOnDifferentThread; }
+            catch (NullReferenceException) { }
+        }
+        private void cb_Minutes_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ticker.MinutesChanged -= Ticker_MinutesChangedOnDifferentThread;
+        }
+        private void cb_Hours_Checked(object sender, RoutedEventArgs e)
+        {
+            try { ticker.HoursChanged += Ticker_HoursChangedOnDifferentThread; }
+            catch (NullReferenceException) { }
+        }
+        private void cb_Hours_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ticker.HoursChanged -= Ticker_HoursChangedOnDifferentThread;
+        }
+        private void cb_Days_Checked(object sender, RoutedEventArgs e)
+        {
+            try { ticker.DaysChanged += Ticker_DaysChangedOnDifferentThread; }
+            catch (NullReferenceException) { }
+        }
+        private void cb_Days_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ticker.DaysChanged -= Ticker_DaysChangedOnDifferentThread;
+        }
     }
 }
