@@ -25,9 +25,11 @@ namespace ConsoleClock
             //c.secondsChanged = MyClockSecondsHaveChanged;
 
             //These lines are equivalent, they just point to different methods
+            ticker.MillisecondsChanged += MillisecondsChangedHandler;
             ticker.SecondsChanged += new Clock.TimeChangedDelegate(SecondsChangedHandler);
             ticker.MinutesChanged += MinutesChangedHandler;
-            
+            ticker.HoursChanged += HoursChangedHandler;
+            Console.Write("00:00:00:000");
             ticker.Start();
         }
 
@@ -35,18 +37,37 @@ namespace ConsoleClock
         {
             ticker = new Clock();            
         }
-
+        private void HoursChangedHandler(int hours)
+        {
+            if (hours >= 3)
+            {
+                hours %= 3;
+            }
+            Console.Write(hours.ToString(), Console.CursorLeft = 0);
+        }
         private void MinutesChangedHandler(int minutes)
         {
-            Console.WriteLine(minutes.ToString());
+            if (minutes >= 3)
+            {
+                minutes %= 3;
+            }
+            Console.Write(minutes.ToString(), Console.CursorLeft = 4);
         }
-
-
         void SecondsChangedHandler(int seconds)
         {
-            Console.WriteLine(seconds.ToString());
+            if (seconds >= 10)
+            {
+                seconds %= 10;
+            }
+            Console.Write(seconds.ToString(), Console.CursorLeft = 7);
         }
-        
-
+        void MillisecondsChangedHandler(int milliseconds)
+        {
+            if(milliseconds >= 1000)
+            {
+                milliseconds %= 1000;
+            }
+            Console.Write(milliseconds.ToString(), Console.CursorLeft = 9);
+        }
     }
 }
