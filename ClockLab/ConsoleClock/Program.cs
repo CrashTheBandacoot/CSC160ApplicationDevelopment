@@ -17,8 +17,6 @@ namespace ConsoleClock
             p.Run();
         }
 
-
-
         private void Run()
         {
             //This line no longer works because we changed the publicly exposed delegate to an event

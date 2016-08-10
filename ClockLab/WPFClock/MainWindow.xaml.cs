@@ -52,18 +52,38 @@ namespace WPFClock
              *  All the Dispatch/BeginInvoke magic happens here in the client code.
              * 
              */
+            ticker.MillisecondsChanged += Ticker_MillisecondsChangedOnDifferentThread;
             ticker.SecondsChanged += Ticker_SecondsChangedOnDifferentThread;
+            ticker.MinutesChanged += Ticker_MinutesChangedOnDifferentThread;
+            ticker.HoursChanged += Ticker_HoursChangedOnDifferentThread;
+            ticker.DaysChanged += Ticker_DaysChangedOnDifferentThread;
             start.BeginInvoke(null, null);
             
         }
 
-        
-        private void Ticker_TimeChangedUIThread(int currentTime)
+        private void Ticker_MillisecondsChangedUIThread(int currentTime)
+        {
+            if (currentTime >= 1000)
+            {
+                currentTime %= 1000;
+            }
+            tb_milliseconds.Content = currentTime;
+        }
+
+        private void Ticker_MillisecondsChangedOnDifferentThread(int currentTime)
+        {
+            tb_milliseconds.Dispatcher.BeginInvoke(new Action<int>(Ticker_MillisecondsChangedUIThread), currentTime);
+        }
+        private void Ticker_SecondsChangedUIThread(int currentTime)
         {
             /*
              * This method is executed by the UI thread, and so can modify the label directly.
              */
-            SecondsLabel.Content = currentTime;        
+            if (currentTime >= 10)
+            {
+                currentTime %= 10;
+            }
+            tb_seconds.Content = currentTime;        
         }
 
         private void Ticker_SecondsChangedOnDifferentThread(int currentTime)
@@ -72,8 +92,42 @@ namespace WPFClock
              * Here's where the Clock's thread will put a message on the UI thread's queue of work,
              * again, through the use of a delegate
              */
-            SecondsLabel.Dispatcher.BeginInvoke(new Action<int>(Ticker_TimeChangedUIThread), currentTime);
+            tb_seconds.Dispatcher.BeginInvoke(new Action<int>(Ticker_SecondsChangedUIThread), currentTime);
+        }
+        private void Ticker_MinutesChangedUIThread(int currentTime)
+        {
+            if (currentTime >= 3)
+            {
+                currentTime %= 3;
+            }
+            tb_minutes.Content = currentTime;
         }
 
+        private void Ticker_MinutesChangedOnDifferentThread(int currentTime)
+        {
+            tb_minutes.Dispatcher.BeginInvoke(new Action<int>(Ticker_MinutesChangedUIThread), currentTime);
+        }
+        private void Ticker_HoursChangedUIThread(int currentTime)
+        {
+            if (currentTime >= 3)
+            {
+                currentTime %= 3;
+            }
+            tb_hours.Content = currentTime;
+        }
+
+        private void Ticker_HoursChangedOnDifferentThread(int currentTime)
+        {
+            tb_hours.Dispatcher.BeginInvoke(new Action<int>(Ticker_HoursChangedUIThread), currentTime);
+        }
+        private void Ticker_DaysChangedUIThread(int currentTime)
+        {
+            tb_days.Content = currentTime;
+        }
+
+        private void Ticker_DaysChangedOnDifferentThread(int currentTime)
+        {
+            tb_days.Dispatcher.BeginInvoke(new Action<int>(Ticker_DaysChangedUIThread), currentTime);
+        }
     }
 }
