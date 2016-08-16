@@ -14,7 +14,7 @@ namespace LINQAssignment
         public List<int> Scores;
         public override string ToString()
         {
-            return $"Name: {First} {Last}, ID: {ID}, Scores: {Scores}";
+            return $"Name: {First} {Last}, ID: {ID}, Scores: {Scores.ListConcat()}";
         }
     }
 }

@@ -26,7 +26,16 @@ namespace LINQAssignment
         };
         static void Main(string[] args)
         {
+            //Q01
             students.Print();
+            Console.WriteLine("----------");
+            //Q02
+            var lastNameG = students.Where(s=> (s.Last.Equals("Garcia")));
+            foreach(var s in lastNameG)
+            {
+                Console.WriteLine(s.ToString());
+            }
+            Console.WriteLine("----------");
         }
     }
 }
