@@ -26,7 +26,7 @@ namespace LINQAssignment
         };
         static void Main(string[] args)
         {
-         
+            students.Print();
         }
     }
 }
