@@ -51,6 +51,25 @@ namespace LINQAssignment
             var firstOrDefault = students.FirstOrDefault();
             Console.WriteLine(firstOrDefault);
             Console.WriteLine("----------");
+            //Q08 Not printed
+            var groupedByFirstNameLetter = 
+                from student in students
+                group student by student.First[0];
+            //Q10
+            foreach (var studentGroup in groupedByFirstNameLetter)
+            {
+                Console.WriteLine(studentGroup.Key);
+                foreach (Student student in studentGroup)
+                {
+                    Console.WriteLine("   {0}, {1}",
+                              student.Last, student.First);
+                }
+            }
+            Console.WriteLine("----------");
+            //Q12
+
+            Console.WriteLine("----------");
+            //Q13
 
         }
     }
