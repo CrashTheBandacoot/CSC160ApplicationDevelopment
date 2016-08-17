@@ -36,6 +36,22 @@ namespace LINQAssignment
                 Console.WriteLine(s.ToString());
             }
             Console.WriteLine("----------");
+            //Q03
+            var firstNameH = 
+                from s in students
+                where s.First.StartsWith("H")
+                select s;
+            firstNameH.ToList().Print();
+            Console.WriteLine("----------");
+            //Q04
+            var firstNameAlphebetically = students.OrderBy(s=>(s.First)).ToList();
+            firstNameAlphebetically.Print();
+            Console.WriteLine("----------");
+            //Q06
+            var firstOrDefault = students.FirstOrDefault();
+            Console.WriteLine(firstOrDefault);
+            Console.WriteLine("----------");
+
         }
     }
 }
