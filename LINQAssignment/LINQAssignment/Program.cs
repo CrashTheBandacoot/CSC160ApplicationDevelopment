@@ -69,12 +69,26 @@ namespace LINQAssignment
             //Q12
             foreach (var s in students)
             {
-                Console.WriteLine(s.Scores.AverageStudentScores());
+                Console.WriteLine(s.Scores.AverageScores());
             }
             Console.WriteLine("----------");
-
             //Q13
-
+            int[] testScores = new int[students.Count];
+            for (int i = 0; i < students.Count; ++i)
+            {
+                testScores[i] = students.ElementAt(i).Scores[0];
+            }
+            Console.WriteLine(testScores.ToList().AverageScores());
+            for (int i = 0; i < students.Count; ++i)
+            {
+                testScores[i] = students.ElementAt(i).Scores[1];
+            }
+            Console.WriteLine(testScores.ToList().AverageScores());
+            for (int i = 0; i < students.Count; ++i)
+            {
+                testScores[i] = students.ElementAt(i).Scores[2];
+            }
+            Console.WriteLine(testScores.ToList().AverageScores());
         }
     }
 }

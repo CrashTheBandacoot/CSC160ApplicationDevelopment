@@ -24,7 +24,7 @@ namespace LINQAssignment
             }
             return nums;
         }
-        public static int AverageStudentScores(this List<int> list)
+        public static int AverageScores(this List<int> list)
         {
             int sum = 0;
             for (int i = 0; i < list.Count; ++i)
