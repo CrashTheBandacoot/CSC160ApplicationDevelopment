@@ -8,7 +8,7 @@ namespace LINQAssignment
 {
     public static class ExtentionMethods
     {
-        public static void Print(this List<Student> list)
+        public static void Print<T>(this List<T> list)
         {
             foreach(var s in list)
             {
@@ -23,6 +23,15 @@ namespace LINQAssignment
                 nums = nums + " " + list.ElementAt(i);
             }
             return nums;
+        }
+        public static int AverageStudentScores(this List<int> list)
+        {
+            int sum = 0;
+            for (int i = 0; i < list.Count; ++i)
+            {
+                sum += list.ElementAt(i);
+            }
+            return sum / list.Count;
         }
     }
 }

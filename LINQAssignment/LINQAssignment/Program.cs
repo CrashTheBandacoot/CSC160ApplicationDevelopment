@@ -67,8 +67,12 @@ namespace LINQAssignment
             }
             Console.WriteLine("----------");
             //Q12
-
+            foreach (var s in students)
+            {
+                Console.WriteLine(s.Scores.AverageStudentScores());
+            }
             Console.WriteLine("----------");
+
             //Q13
 
         }
